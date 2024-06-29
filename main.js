@@ -1,40 +1,47 @@
-const myLibrary = []
+
 const addBookButton = document.querySelector("#add-btn");
 const bookForm = document.querySelector(".book-form");
 const bookSubmitButton = document.querySelector(".btn-submit"); 
 
-
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages
-  this.read = read;
+class Library {
+  constructor() {
+    this.books = []
+  }
+  addBook(book) {
+    this.books.push(book);
+  }
 }
 
-// TO-DO: Finish toggle function and implementation
-Book.prototype.toggleRead = function() {
-  this.read = this.read === 'read' ? 'not read' : 'read'
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages
+    this.read = read;
+  }
+
+  toggleRead() {
+    this.read = this.read === 'read' ? 'not read' : 'read'
+  }
 }
 
-function addBookToLibrary(book) {
-  myLibrary.push(book)
-}
 
+const library = new Library();
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 310, "read");
 const hp1 = new Book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", 459, "read");
 const wfr = new Book("Wizard's First Rule", "Terry Goodking", 836, "read");
 
-addBookToLibrary(theHobbit);
-addBookToLibrary(hp1);
-addBookToLibrary(wfr);
+library.addBook(theHobbit);
+library.addBook(hp1);
+library.addBook(wfr);
 
-console.log(myLibrary);
+console.log(library);
 
 function displayBooks(library) {
   const container = document.querySelector('.library');
   container.innerHTML = '';
 
-  library.forEach((book, i) => {
+  library.books.forEach((book, i) => {
     const bookDiv = document.createElement('div');
     bookDiv.classList.add('book');
 
@@ -68,8 +75,8 @@ function displayBooks(library) {
     deleteBook.addEventListener('click', () => {
       bookDiv.remove();
 
-      myLibrary.splice(i, 1);
-      displayBooks(myLibrary);
+      library.books.splice(i, 1);
+      displayBooks(library);
     })
 
     const readButton = document.createElement('button');
@@ -110,11 +117,11 @@ bookForm.addEventListener("submit", (event) => {
 
   let book = new Book(bookTitle, bookAuthor, bookPages, bookRead)
 
-  addBookToLibrary(book);
-  displayBooks(myLibrary);
+  library.addBook(book);
+  displayBooks(library);
   bookForm.reset();
   bookForm.classList.toggle('hidden');
   addBookButton.innerText = "Add Book";
 })
 
-displayBooks(myLibrary);
+displayBooks(library);
