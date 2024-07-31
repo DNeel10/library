@@ -1,50 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Document</title>
-</head>
-<body>
-
-  <main class="container">
-    <button id="add-btn" class="btn btn-primary">Add Book</button>
-    <form action="#" class="book-form hidden">
-
-      <div class="input-group">
-        <label for="title">Book Title: </label>
-        <input type="text" name="title" id="title">
-      </div>
-
-      <div class="input-group">
-        <label for="author">Author: </label>
-        <input type="text" name="author" id="author">
-      </div>
-
-      <div class="input-group">
-        <label for="pages">Pages: </label>
-        <input type="text" name="pages" id="pages">
-      </div>
-
-      
-      <div class="input-group">
-        <div class="radio-group">
-          <input type="radio" name="read" id="read" value="read">
-          <label for="read">Read</label>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="container">
+      <button id="add-btn" class="btn btn-primary">Add Book</button>
+      <form action="#" class="book-form hidden">
+        <div class="input-group">
+          <label for="title">Book Title: </label>
+          <input type="text" name="title" id="title" required />
         </div>
 
-        <div class="radio-group">
-          <input type="radio" name="read" id="notread" value="not read">
-          <label for="read">Not Read</label>
+        <div class="input-group">
+          <label for="author">Author: </label>
+          <input type="text" name="author" id="author" required />
         </div>
-      </div>
-      <button class="btn btn-submit">Submit</button>
-    </form>
-    <div class="library">
-    </div>
-  </main> 
 
-  <script src="main.js"></script>
-</body>
+        <div class="input-group">
+          <label for="pages">Pages: </label>
+          <input type="text" name="pages" id="pages" required />
+        </div>
+
+        <div class="input-group">
+          <div class="radio-group">
+            <input type="radio" name="read" id="read" value="read" />
+            <label for="read">Read</label>
+          </div>
+
+          <div class="radio-group">
+            <input type="radio" name="read" id="notread" value="not read" />
+            <label for="read">Not Read</label>
+          </div>
+        </div>
+        <button class="btn btn-submit">Submit</button>
+      </form>
+      <div class="library"></div>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
 </html>
