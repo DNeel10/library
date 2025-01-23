@@ -117,18 +117,30 @@ addBookButton.onclick = function () {
 
 bookForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  let bookTitle = bookForm.querySelector("#title").value;
-  let bookAuthor = bookForm.querySelector("#author").value;
-  let bookPages = bookForm.querySelector("#pages").value;
-  let bookRead = bookForm.querySelector('input[name="read"]:checked').value;
 
-  let book = new Book(bookTitle, bookAuthor, bookPages, bookRead);
+  const titleInput = document.getElementById("title");
+  // const authorInput = document.getElementById("author");
 
-  library.addBook(book);
-  displayBooks(library);
-  bookForm.reset();
-  bookForm.classList.toggle("hidden");
-  addBookButton.innerText = "Add Book";
+  if (titleInput.validity.valueMissing) {
+    titleInput.setCustomValidity("Please add a title");
+    console.log("Title input validity:", titleInput.validity);
+    console.log("Title input value:", titleInput.value);
+
+    titleInput.reportValidity();
+  } else {
+    let bookTitle = bookForm.querySelector("#title").value;
+    let bookAuthor = bookForm.querySelector("#author").value;
+    let bookPages = bookForm.querySelector("#pages").value;
+    let bookRead = bookForm.querySelector('input[name="read"]:checked').value;
+
+    let book = new Book(bookTitle, bookAuthor, bookPages, bookRead);
+
+    library.addBook(book);
+    displayBooks(library);
+    bookForm.reset();
+    bookForm.classList.toggle("hidden");
+    addBookButton.innerText = "Add Book";
+  }
 });
 
 displayBooks(library);
